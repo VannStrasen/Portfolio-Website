@@ -1,66 +1,102 @@
 // Widescreens
 @include mediaXl {
-
+  // To be implemented
 }
 
-// Desktops & Laptops
 @include mediaLg {
+  .projects {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@include mediaMd {
+  header {
+    grid-template-columns: repeat(1, 1fr);
+    .intro {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+    .icons {
+      a {
+        margin-right: 1vw;
+      }
+    }
+  }
+
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #about {
+    .skills-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    p {
+      font-size: 20px;
+    }
+    .title {
+      text-align: center;
+    }
+  }
+
+  #contact {
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 0rem;
+    text-align: center;
+
+    p {
+      font-size: 20px;
+    }
+  }
+}
+
+@include mediaSm {
+  header {
+    padding: 2rem 0rem 0.5rem;
+    grid-template-columns: repeat(1, 1fr);
+    .intro {
+      display: flex;
+      justify-content: center;
+    }
+    .icons {
+      display: none;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-evenly;
+      padding-right: 7vh;
+    }
+  }
+
+  .projects {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  #about {
+    .skills-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    p {
+      font-size: 20px;
+    }
+    .title {
+      text-align: center;
+    }
+  }
+
+  #contact {
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 0rem;
+    text-align: center;
+
+    p {
+      font-size: 20px;
+    }
+  }
+
   
 }
 
-// Tablets & Small Laptops
-@include mediaMd {
-  main {
-    align-items: center;
-    text-align: center;
-
-    .lg-heading {
-      line-height: 1;
-      margin-bottom: 1rem;
-    }
-  }
-
-  ul.menu-nav, div.menu-branding {
-    float: none;
-    width: 100%;
-    min-height: 0;
-
-    &.show {
-      transform: translate3d(0, 0, 0)
-    }
-  }
-
-  .menu-nav {
-    height: 75vh;
-    transform: translate3d(-100%, 0, 0);
-    font-size: 24px;
-  }
-
-  .menu-branding {
-    height: 25vh;
-    transform: translate3d(100%, 0, 0);
-
-    .portrait {
-      width: 100px;
-			height: 100px;
-    }
-  }
-
-  .about-info {
-    grid-template-areas: 
-      'bioimage'
-      'bio'
-      'job1'
-      'job2'
-      'job3';
-
-    grid-template-columns: 1fr;
-  }
-}
-
-// Smartphones
-@include mediaSm {
-  main#home h1 {
-    margin-top: 10vh;
-  }
-}

@@ -1,19 +1,38 @@
-$primary-color: #444;
-$secondary-color: #eece1a;
+$primary-color: #fff;
+$text-color: #06044a;
+$contrast-color: #fcba03;
 
 @mixin easeOut {
-	transition: all 0.5s ease-out;
+	transition: all 0.25s ease;
 }
 
-// Set Text Color
-@function set-text-color($color) {
-	@if (lightness($color) > 40) {
-		@return #000;
-	} @else {
-		@return #fff;
+@keyframes fadeInAnimation { 
+	0% { 
+		opacity: 0;
+		transform: translateY(25px); 
+	} 
+	100% { 
+		opacity: 1;
+		transform: translateY(0px); 
+	} 
+} 
+
+@keyframes bounce {
+	50% { 
+		-webkit-transform:  translateY(-6px);
+		-moz-transform:     translateY(-6px);
+		-ms-transform:      translateY(-6px);
+		-o-transform:       translateY(-6px);
+		transform:          translateY(-6px);
+	}
+	100% { 
+		-webkit-transform:  translateY(0px);
+		-moz-transform:     translateY(0px);
+		-ms-transform:      translateY(0px);
+		-o-transform:       translateY(0px);
+		transform:          translateY(0px);
 	}
 }
-
 
 // Media Query Mixins
 @mixin mediaSm {
@@ -23,13 +42,13 @@ $secondary-color: #eece1a;
 }
 
 @mixin mediaMd {
-	@media screen and (max-width: 768px) {
+	@media screen and (min-width: 501px) and (max-width: 900px) {
 		@content;
 	}
 }
 
 @mixin mediaLg {
-	@media screen and (max-width: 769px) and (max-width: 1170px) {
+	@media screen and (min-width: 901px) and (max-width: 1170px) {
 		@content;
 	}
 }

@@ -1,125 +1,262 @@
 @import 'config';
-@import 'menu';
 
 * {
 	box-sizing: border-box;
 }
 
 body {
-  background: $primary-color;
-	color: set-text-color($primary-color);
+	z-index: 100;
 	height: 100%;
 	margin: 0;
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
 	line-height: 1.5;
-}
-
-h1, h2, h3 {
-	margin: 0;
-	font-weight: 500;
-
-	&.lg-heading {
-		font-size: 6rem;
-	}
-
-	&.sm-heading {
-		margin-bottom: 2rem;
-		padding: 0.2rem 1rem;
-		background: lighten($primary-color, 2);
-	}
+	color: $text-color;
 }
 
 a {
-	color: #fff;
+	color: $text-color;
 	text-decoration: none;
 }
 
+li {
+	list-style-type: none;
+}
+
+p {
+	font-size: 30px;
+	font-weight: 300;
+}
+
 header {
-	position: fixed;
+	display: grid;
+	grid-template-columns: 3fr 2fr;
+	background: darken(#fff, 2);
+	position: relative;
 	z-index: 10;
 	width: 100%;
-}
+	padding: 2rem 5rem 0.5rem;
 
-.text-secondary {
-	color: $secondary-color;
-}
+	.name {
+		width: fit-content;
+		display: flex;
+		align-items: center;
+		font-weight: 175;
+		font-size: 40px;
 
-main {
-	padding: 4rem;
-	// height: 100%;
-	min-height: calc(100vh - 60px); // Sticky footer, 60px=footer height
+		.n1 {
+			display: inline-block;
+		}
+		.n2 {
+			display: inline-block;
+		}
+	}
+
+	.name span:hover {
+		.n1 {
+			animation: bounce 0.25s ease;
+			-webkit-animation: bounce 0.25s ease;
+		}
+		.n2 {
+			animation: bounce 0.25s ease;
+			-webkit-animation: bounce 0.25s ease;
+			animation-delay: 0.1s;
+		}
+
+	}
 
 	.icons {
-		margin-top: 1rem;
-
 		a {
-			padding: 0.4rem;
-
+			transition: 0.5s ease;
+			font-size: 14px;
+			font-weight: 0;
+			margin-right: 30px;
 			&:hover {
-				color: $secondary-color;
-				@include easeOut();
+				color: $contrast-color;
 			}
 		}
 	}
 
-	&#home {
-		overflow: hidden;
-		h1 {
-			margin-top: 20vh;
+	.nav {
+		display: flex;
+		justify-content: space-around;
+		align-items: flex-end;
+		font-size: 20px;
+		font-weight: 100;
+		.nav-link-current::after {
+			content: '';
+			display: block;
+			width: 100%;
+			height: 1px;
+			background: $text-color;
+		}
+	}
+
+	.nav-link::after {
+		content: '';
+		display: block;
+		width: 0;
+		height: 1px;
+		background: $text-color;
+		@include easeOut();
+	}
+	
+	.nav-link:hover::after {
+		width: 100%;
+	}
+}
+
+
+
+main {
+	animation: 1s ease-out fadeInAnimation;
+	
+	padding: 3rem 4rem 0rem;
+	min-height: calc(100vh - 20px - 6rem); 
+}
+
+.projects {
+	
+	display: grid;
+	grid-gap: 0.7rem;
+	grid-template-columns: repeat(3, 1fr);
+
+	.item {
+		position: relative;
+		img {
+			width: 100%;
+			@include easeOut;
+			border-style: solid;
+			border-width: 5px;
+			border-radius: 10px;
+			border-color: darken(#fff, 20);
+		}
+
+		.overlay {
+			position: absolute;
+			width: 100%;
+			top: 32%;
+			line-height: 2.5;
+
+			z-index: -10;
+			text-align: center;
+			opacity: 0;
+			@include easeOut;
+			
+			span {
+				font-weight: 250;
+			}
+		}
+
+		&:hover {
+			img {
+				opacity: 0.1;
+			}
+			.overlay {
+				transform: translateY(-10px);
+				opacity: 1;
+			}
 		}
 	}
 }
 
-.about-info {
-	display: grid;
-	grid-gap: 30px;
-	grid-template-areas:
-		'bioimage bio bio'
-		'job1 job2 job3';
-	grid-template-columns: repeat(3, 1fr);
+#about {
 
-	.bio-image {
-		grid-area: bioimage;
-		margin: auto;
-		border-radius: 50%;
-		background: url('../img/portrait.jpg');
-		width: 250px;
-		height: 250px;
-		border: $secondary-color 3px solid;
-		background-size: cover;
+	.title {
+		font-size: 24px;
 	}
-	
-	.bio {
-		grid-area: bio;
-		font-size: 1.5rem;
-		font-size: 1.5rem;
+	.title::after {
+		content: '';
+		display: block;
+		width: 100%;
+		height: 1px;
+		background: $text-color;
 	}
-	
-	.job-1 {
-		grid-area: job1
+	.skills-container {
+		display: grid;
+		grid-template-columns: 76px 80px 80px 80px 60px 80px;
+		column-gap: 20px;
+		padding-top: 10px;
+		padding-bottom: 10px;
 	}
-	
-	.job-2 {
-		grid-area: job2
-	}
-	
-	.job-3 {
-		grid-area: job3
-	}
-	
-	.job {
-		background: lighten($primary-color, 5);
-		padding: 0.5rem;
-		border-bottom: $secondary-color 5px solid;
+	.highlight {
+		color: $contrast-color
 	}
 }
 
-#main-footer {
-	text-align: center;
-	padding: 1rem;
-	background: darken($primary-color, 10);
-	color: set-text-color($primary-color);
-	height: 60px;
+#contact {
+	margin-top: 25px;
+	margin-left: 200px;
+	margin-right: 200px;
+
+	p {
+		font-size: 25px;
+		font-weight: 100;
+		margin-bottom: 45px;
+	}
+	
+	.spam-block {
+		font-family: 'Courier New', Courier, monospace;
+		background-color: darken(#fff, 10);
+	}
+
+	.contact-link {
+		font-weight: 400;
+		@include easeOut;
+
+		&:hover {
+			color: $contrast-color;
+		}
+	}
+
+	/* CSS for when I inplement contact forms!
+	.form-control {
+		display: grid;
+		margin: auto;
+		padding: 25px;
+		width: 800px;
+		background: transparent;
+		border: none;
+		outline: none;
+		border-bottom: 1px solid $text-color;
+		font-size: 18px;
+		font-weight: 100;
+	}
+	.button {
+		display: grid;
+		margin: auto;
+		padding: 20px;
+		margin-top: 20px;
+		width: 800px;
+		background: #fff;
+		border-color: $text-color;
+		border-radius: 4px;
+		border-bottom: 1px solid $text-color;
+		font-size: 22px;
+		font-weight: 300;
+		color: $text-color;
+		letter-spacing: 1px;
+		@include easeOut;
+
+		&:hover {
+			background-color: $text-color;
+			color: #fff;
+			cursor: pointer;
+		}
+	}
+	*/
+	
+}
+
+footer {
+	display: flex;
+	justify-content: space-around;
+	align-items: flex-end;
+	background: darken(#fff, 2);
+	width: 100%;
+	height: 20px;
+	font-size: 12px;
+
+	font-weight: 100;
 }
 
 @import 'mobile';
